@@ -1,0 +1,57 @@
+@model List<CampanasApp.Models.Campana>
+
+<h2>Listado de Campañas</h2>
+
+<form method="get">
+    <label>Categoría:</label>
+    <select name="categoria">
+        <option value="">Todas</option>
+        <option value="Electro">Electro</option>
+        <option value="Moda">Moda</option>
+        <option value="Hogar">Hogar</option>
+    </select>
+
+    <label>Estado:</label>
+    <select name="estado">
+        <option value="">Todos</option>
+        <option value="Vigente">Vigente</option>
+        <option value="Próxima">Próxima</option>
+        <option value="Finalizada">Finalizada</option>
+    </select>
+
+    <button type="submit" class="btn btn-success">Filtrar</button>
+</form>
+
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+            <th>Canal</th>
+            <th>Descuento</th>
+            <th>Fechas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Nombre</td>
+                <td>@c.Categoria</td>
+                <td>@c.Estado</td>
+                <td>@c.Canal</td>
+                <td>@c.DescuentoPct %</td>
+                <td>@c.FechaInicio.ToShortDateString() - @c.FechaFin.ToShortDateString()</td>
+                <td>
+                    <a href="/Campanas/Detalle/@c.Id" class="btn btn-primary">
+                        Ver detalle
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
